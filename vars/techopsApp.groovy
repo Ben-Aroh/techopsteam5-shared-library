@@ -1,12 +1,13 @@
-def call('group4-shared-library'){
+def call(String repoUrl){
 pipeline{
     agent any
     stages{
-        stage('1-check engineers name'){
-            steps{
-                echo "My name is Joyce"
-        }
-      }  
+        stage("Checkout Code") {
+               steps {
+                   git branch: 'main',
+                          url: "${repoUrl}"
+               }
+           }
         stage('2-parallel-jobs first'){
             parallel{
                 stage('2-check disk free space in mega byte'){
